@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./ornek3-finished.css">
+    <title>Mustafa'nın Çay Listesi</title>
+</head>
+
+<body>
+    <h1>En sevdiğim <span id="caySayisi">5</span> çay</h1>
+    <fieldset>
+        <legend>Çay Ekle</legend>
+        <form id="form">
+            <label for="cayInput">Çay Adı:</label><input name="cayInput" id="cayInput" type="text">
+            <button type="submit">Çay Ekle</button>
+        </form>
+    </fieldset>
+    <fieldset>
+        <legend>Çaylar?</legend>
+        <button id="cayButton" class="cayButonu" onclick="caylarGelsin()">Çaylar gelsin...</button>
+    </fieldset>
+    <ol id="liste">
+
+    </ol>
+
+    <script>
+
+        const button = document.getElementById("cayButton")
+        const liste = document.getElementById("liste")
+        const form = document.getElementById("form");
+        const input = document.getElementById('cayInput')
+        function caylarGelsin() {
+            pseudoFetch().then(
+                (response) => {
+                    console.log(response)
+                    response.forEach((element) => liste.appendChild(element))
+                    button.disabled = true
+                }
+            )
+        }
+        async function pseudoFetch() {
+            let caylar = ["Siyah çay", "Yeşil Çay", "Mate Çayı", "Kara demlik çayı"]
+            // Çayları sanki sunucudan çağırıyormuşcasına 
+            const yeniCaylar = caylar.map((cay) => {
+                let cayElementi = document.createElement('li')
+                cayElementi.innerHTML = cay
+                return cayElementi
+            })
+            return yeniCaylar
+        }
+    </script>
+</body>
+
+</html>

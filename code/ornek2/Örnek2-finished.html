@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./ornek2-finished.css">
+    <title>Mustafa'nın Çay Listesi</title>
+</head>
+
+<body>
+    <h1>En sevdiğim <span id="caySayisi">5</span> çay</h1>
+    <fieldset>
+        <legend>Çay Ekle</legend>
+        <form id="form">
+            <label for="cayInput">Çay Adı:</label><input name="cayInput" id="cayInput" type="text">
+            <button type="submit">Çay Ekle</button>
+        </form>
+    </fieldset>
+    <fieldset>
+        <legend>Çaylar?</legend>
+        <button id="cayButton" class="cayButonu" onclick="caylarGelsin()">Çaylar gelsin...</button>
+    </fieldset>
+    <ol id="liste">
+        <li>Siyah çay</li>
+        <li class="yesilCay">Yeşil çay</li>
+        <li>Mate</li>
+        <li>Kokoreççi Abinin çayı</li>
+        <li>Kara Demlik çayı</li>
+    </ol>
+
+    <script>
+        const button = document.getElementById("cayButton")
+        const liste = document.getElementById("liste")
+        const form = document.getElementById("form");
+        const input = document.getElementById('cayInput')
+        function caylarGelsin() {
+            liste.style.display = "block"
+            button.setAttribute("disabled", true)
+        }
+        function cayEkle(event) {
+            event.preventDefault()
+            let cayAdi = input.value.trim()
+            let çayElementi = document.createElement('li')
+            çayElementi.innerHTML = cayAdi
+            liste.appendChild(çayElementi)
+            form.reset()
+        }
+        form.addEventListener("submit", cayEkle)
+
+    </script>
+</body>
+
+</html>
