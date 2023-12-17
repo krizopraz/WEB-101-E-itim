@@ -12,7 +12,7 @@
     <h1>En sevdiğim <span id="caySayisi">5</span> çay</h1>
     <fieldset>
         <legend>Çay Ekle</legend>
-        <form id="form">
+        <form action="http://127.0.0.1:5000/cay" id="formDegistir">
             <label for="cayInput">Çay Adı:</label><input name="cayInput" id="cayInput" type="text">
             <button type="submit">Çay Ekle</button>
         </form>
@@ -32,22 +32,25 @@
         const form = document.getElementById("form");
         const input = document.getElementById('cayInput')
         function caylarGelsin() {
-            pseudoFetch().then(
+            fetch("http://127.0.0.1:5000/cay").then(
                 (response) => {
-                    response.forEach((element) => liste.appendChild(element))
+                    response.json().then(
+                        (data)=>{
+                            data.forEach((cay) => {
+                        let cayElementi = document.createElement('li')
+                        cayElementi.innerHTML = `:${cay.cayAdi} | id:${cay.cayID} | ${cay.fiyat}₺`
+                        liste.appendChild( cayElementi)
+                    })
+                        }
+                    )
                     button.disabled = true
                 }
             )
         }
-        async function pseudoFetch() {
-            let caylar = ["Siyah çay", "Yeşil Çay", "Mate Çayı", "Kara demlik çayı"]
+        async function getCaylar() {
+            
             // Çayları sanki sunucudan çağırıyormuşcasına 
-            const yeniCaylar = caylar.map((cay) => {
-                let cayElementi = document.createElement('li')
-                cayElementi.innerHTML = cay
-                return cayElementi
-            })
-            return yeniCaylar
+           
         }
     </script>
 </body>

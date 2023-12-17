@@ -13,7 +13,8 @@
     <fieldset>
         <legend>Çay Ekle</legend>
         <form id="form">
-            <label for="cayInput">Çay Adı:</label><input name="cayInput" id="cayInput" type="text">
+            <label for="cayInput">Çay Adı:</label>
+            <input name="cayInput" id="cayInput" type="text">
             <button type="submit">Çay Ekle</button>
         </form>
     </fieldset>
@@ -21,7 +22,7 @@
         <legend>Çaylar?</legend>
         <button id="cayButton" class="cayButonu" onclick="caylarGelsin()">Çaylar gelsin...</button>
     </fieldset>
-    <ol id="liste">
+    <ol hidden id="liste">
         <li>Siyah çay</li>
         <li class="yesilCay">Yeşil çay</li>
         <li>Mate</li>
@@ -35,7 +36,7 @@
         const form = document.getElementById("form");
         const input = document.getElementById('cayInput')
         function caylarGelsin() {
-            liste.style.display = "block"
+            liste.hidden = false
             button.setAttribute("disabled", true)
         }
         function cayEkle(event) {

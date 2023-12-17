@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./ornek.css" rel="stylesheet">
+    <title>En Sevdiğim Çaylar</title>
+</head>
+<body>
+   <h1> En Sevdiğim Çaylar</h1>
+   <button onclick="çaylarGelsin" id="button">Çaylar Gelsin</button>
+   <ol id="liste">
+
+   </ol>
+   <script>
+        let çaylar = ["Siyah çay","yeşil çay","Mate çayı"]
+        const liste = document.getElementById('liste')
+        const button = document.getElementById('button')
+    
+        function çaylarGelsin(){
+            çaylar = çaylar.map(
+            (çay)=>{
+                const cayEl =  document.createElement('li')
+                cayEl.innerHTML = çay
+                return cayEl
+            }
+        )
+            çaylar.forEach((çay)=>{
+            liste.appendChild(çay)
+        })
+        }
+        
+
+
+   </script>
+</body>
+</html>
+
